@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   // check the session
   if (req.session) {
     Comment.create({
@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
 });
 
 // DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   Comment.destroy({
     where: {
       id: req.params.id
